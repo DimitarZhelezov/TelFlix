@@ -1,0 +1,44 @@
+﻿@model MovieIndexViewModel
+
+@{
+    ViewData["Title"] = "Movies Index";
+}
+
+
+<div id="form-row">
+    <p class="h4 text-primary font-weight-bold">Filter by genre</p>
+</div>
+<div id="form-row">
+    <div class="form-group">
+        <select asp-for="@Model.GenreId" asp-items="@Model.Genres" class="form-control input-sm">
+            <option value="0">--All movies--</option>
+        </select>
+    </div>
+
+    <div id="genreResults" class="form-group">
+        <partial name="_GenreResults" model="@Model.SelectMovieResultViewModel" />
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    const firstPage = 1;
+
+    $("#GenreId").change(function () {
+        let genreId = $("#GenreId").val();
+        let url = "@Url.Action("GetGenreMovies", "Movies")?genre=" + genreId + "&page=" + firstPage;
+
+        $("#genreResults").load(url);
+    });
+
+    //used in partial view pagination
+    function goToPageNumber(elem) {
+        let selectedPage = $(elem).data('assigned-page');
+        let genreId = $("#GenreId").val();
+        let url = "@Url.Action("GetGenreMovies", "Movies")?genre=" + genreId + "&page=" + selectedPage;
+
+        $("#genreResults").load(url);
+    }
+
+</script>

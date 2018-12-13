@@ -1,0 +1,101 @@
+﻿body {
+    background: url(/images/qbkls.png)
+}
+
+.our-side-menu {
+    margin-top: 100px;
+}
+
+.container {
+    margin-top: 5%;
+}
+
+h1 {
+    margin-bottom: 50px;
+}
+
+.inner {
+    overflow: hidden;
+}
+
+    .inner img {
+        transition: all 1.5s ease;
+        height: 20rem;
+        height: 20rem;
+    }
+
+    .inner:hover img {
+        transform: scale(1.5);
+    }
+
+.card-img-top {
+    width: 100%;
+    height: 12vw;
+    object-fit: cover;
+}
+
+/* body {
+    margin:2rem;
+} */
+
+.movie-modal-dialog {
+    max-width: 800px;
+    margin: 30px auto;
+}
+
+.movie-modal-body {
+    position: relative;
+    padding: 0px;
+}
+
+.close-modal-custom {
+    position: absolute;
+    right: -30px;
+    top: 0;
+    z-index: 999;
+    font-size: 2rem;
+    font-weight: normal;
+    color: #fff;
+    opacity: 1;
+}
+
+.card {
+    width: 13rem;
+    /*height: 20rem;*/
+}
+
+.movie-wrapper {
+    width: 1000px;
+    overflow: hidden; /* will contain if #first is longer than #second */
+}
+
+.actor-wrapper {
+    width: 1000px;
+    overflow: hidden;
+}
+
+.poster {
+    margin-right: 20px;
+    float: left; /* add this */
+}
+
+.actor-image {
+    width: 20px;
+}
+
+.input-group {
+    width: 50%;
+}
+
+a.disabled {
+    color: gray;
+    pointer-events: none;
+}
+
+.card-my-card {
+    width: 1000px;
+}
+
+.customLink, .customLink:hover {
+    text-decoration: none;
+}

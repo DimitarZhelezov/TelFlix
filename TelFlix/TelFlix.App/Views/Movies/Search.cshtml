@@ -1,0 +1,87 @@
+﻿@model SearchMovieViewModel
+
+<div class="search-results">
+
+    <h1 class="display-4">TelFlix search results:</h1>
+    @if (!Model.DbMovies.Any())
+    {
+        <span class="display-4 text-center text-info">
+            No movies found
+        </span>
+    }
+    else
+    {
+        <table class="table table-hover table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>  Title  </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="bg-light">
+
+                @foreach (var m in Model.DbMovies)
+                {
+                    <tr>
+                        <td class="text-success">
+                            @m.Title
+                        </td>
+                        <td>
+                            <a asp-controller="Movies" asp-action="Details" asp-route-id="@m.Id" class="btn btn-success">
+                                Go to movie
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+</div>
+<hr />
+<div class="search-results">
+    <h1 class="display-4">Api search results:</h1>
+    @if (!Model.ApiMovies.Any())
+    {
+        <span class="display-4 text-center text-info">
+            No movies found
+        </span>
+    }
+    else
+    {
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>  Title  </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="bg-light">
+                @foreach (var m in Model.ApiMovies)
+                {
+                    <tr>
+                        <td>
+                            @m.Title
+                        </td>
+                        <td>
+                            @if (User.IsInRole("Moderator") || User.IsInRole("Admin"))
+                            {
+                                <div id="fold">
+                                    <a asp-controller="Movies" asp-action="AddToDb" asp-route-id="@m.ApiMovieId" class="btn btn-success">
+                                        <p id="fold_p">Add movie to TelFlix Database</p>
+                                    </a>
+                                </div>
+                            }
+                            else if (User.Identity.IsAuthenticated)
+                            {
+                                <input type="hidden" value="@m.ApiMovieId" class="movieApiId">
+                                <button type="button" class="addToWishlist btn btn-primary">Add to wishlist</button>
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

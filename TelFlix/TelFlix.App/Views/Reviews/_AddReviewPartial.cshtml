@@ -1,0 +1,23 @@
+﻿@model ReviewViewModel
+
+<form asp-action="Add" asp-controller="Reviews" asp-route-id="@Model.MovieId" data-ajax="true"
+      data-ajax-method="post"
+      data-ajax-mode="replace"
+      data-ajax-success="success">
+    <div class="form-group">
+        <textarea cols="70" rows="3" asp-for="Comment" class="form-control"></textarea>
+        <span asp-validation-for="Comment" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" name="Post" class="btn btn-block btn-success" value="Post" />
+    </div>
+</form>
+
+<script>
+    function success() {
+        $('#Comment').val("")
+
+        let url = "@Url.Action("GetMovieReviews", "Reviews")?id=" + @Model.MovieId;
+        $("#reviews").load(url);
+    }
+</script>
